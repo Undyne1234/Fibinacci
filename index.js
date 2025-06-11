@@ -19,8 +19,8 @@ app.use(express.static("public"));
 
 app.get("/fibonacci", async (req, res) => {
     const n = parseInt(req.query.n);
-    if (isNaN(n) || n < 0) {
-        return res.status(400).json({ error: "Missing or invalid 'n' parameter" });
+    if (isNaN(n) || n < 0 || n > 1476) {
+        return res.status(400).json({ error: "Oopsie! That input doesn't quite add up, floof. Make sure you give me a number between 0 and 1476 — nothing less, nothing more, just paw-fect! 🐾✨"});
     }
 
     const result = fibonacci(n);
