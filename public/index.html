@@ -65,7 +65,7 @@
   <script>
     async function calculateFibonacci() {
       const n = document.getElementById('inputN').value;
-      const response = await fetch(`/fibonacci?n=${n}`);
+      const response = await fetch(`/api/FibonacciFunction?n=${n}`);
       const data = await response.json();
       document.getElementById('result').innerText = 
         data.result !== undefined 
