@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fibonacci Calculator 🧮</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #2c3e50, #3498db);
+      color: #ecf0f1;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .input-container {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      width: 200px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #f39c12;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    button:hover {
+      background-color: #e67e22;
+    }
+    #result {
+      font-size: 1.5rem;
+      margin-top: 30px;
+    }
+    .math-image {
+      margin-top: 40px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>Fibonacci Calculator 🧮</h1>
+  <div class="input-container">
+    <input type="number" id="inputN" placeholder="Enter a number..." min="0" />
+    <button onclick="calculateFibonacci()">Calculate</button>
+  </div>
+  <p id="result"></p>
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Fibonacci_spiral_34.svg" alt="Fibonacci Spiral" class="math-image" />
+
+  <script>
+    async function calculateFibonacci() {
+      const n = document.getElementById('inputN').value;
+      const response = await fetch(`/fibonacci?n=${n}`);
+      const data = await response.json();
+      document.getElementById('result').innerText = 
+        data.result !== undefined 
+          ? `Fibonacci(${data.input}) = ${data.result}` 
+          : data.error;
+    }
+  </script>
+</body>
+</html>
